@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: grey;
+
+    width: 400px;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.controls-a, .controls-b {
+    background-color: purple;
+
+    flex: 1;
+}
+
+.game-area {
+    background-color: yellow;
+
+    flex: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-board {
+    background-color: purple;
+    
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    flex: 1;
+
+    display: flex;
+}
+
+.row-1 {
+    border-bottom: 1px solid black;
+}
+
+.row-3 {
+    border-top: 1px solid black;
+}
+
+.square {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square-1 {
+    border-right: 1px solid black;
+}
+
+.square-3 {
+    border-left: 1px solid black;
+}

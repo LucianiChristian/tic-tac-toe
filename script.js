@@ -8,19 +8,15 @@ const Player = (name, mark) => {
 const gameBoard = (() => {
     const board = ['X', '', 'O', '', 'X', 'X', '', '', ''];
 
-    const getBoard = () => board;
-
-    return {getBoard};
+    return {board};
 })();
 
 const gameDisplay = (() => {
     const boardDisplay = document.querySelectorAll('.square');
 
     const renderBoard = () => {
-        const boardData = gameBoard.getBoard();
-
-        for(let index in boardData) {
-            boardDisplay[index].textContent = boardData[index];
+        for(let index in gameBoard.board) {
+            boardDisplay[index].textContent = gameBoard.board[index];
         }
     };
 

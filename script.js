@@ -5,32 +5,34 @@ const Player = (name, mark) => {
     return {getName, getMark};
 }
 
-const gameBoard = (() => {
-    const boardState = ['X', '', 'O', '', 'X', 'X', '', '', ''];
+const boardModel = (() => {
+    const board = ['X', '', 'O', '', 'X', 'X', '', '', ''];
 
-    const getBoardState = () => [...boardState];
-    const setBoardState = (index, mark) => {
-        boardState[index] = mark; 
+    const getBoard = () => [...board];
+    const setSquare = (index, mark) => {
+        board[index] = mark; 
     }
 
-    return {getBoardState, setBoardState};
+    return {getBoard, setSquare};
 })();
 
-const gameDisplay = (() => {
+const boardView = (() => {
     const boardDisplay = document.querySelectorAll('.square');
 
     const renderBoard = () => {
-        const boardData = gameBoard.getBoardState();
+        const model = boardModel.getBoard();
 
-        for(let index in boardData) {
-            boardDisplay[index].textContent = boardData[index];
+        for(let index in model) {
+            boardDisplay[index].textContent = model[index];
         }
     };
 
     return {renderBoard}
 })();
 
-const gameController = (() => {
-
+const boardController = (() => {
+    // mark board
+        // gameBoard.setBoardState()
+        // gameDisplay.renderBoard()
 })();
 

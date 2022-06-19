@@ -6,11 +6,14 @@ const Player = (name, mark) => {
 }
 
 const gameBoard = (() => {
-    const board = ['X', '', 'O', '', 'X', 'X', '', '', ''];
+    const boardState = ['X', '', 'O', '', 'X', 'X', '', '', ''];
 
-    const getBoard = () => board;
+    const getBoardState = () => [...boardState];
+    const setBoardState = (index, mark) => {
+        boardState[index] = mark; 
+    }
 
-    return {getBoard};
+    return {getBoardState, setBoardState};
 })();
 
 const gameDisplay = (() => {

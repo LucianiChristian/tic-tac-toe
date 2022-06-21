@@ -68,10 +68,15 @@ const game = (() => {
     };
 
     // Takes a turn
-    const takeTurn = () => {
-        boardController.markBoard(0, currentTurn.getMark());
+    const takeTurn = (index) => {
+        boardController.markBoard(index, currentTurn.getMark());
         switchTurn();
     }
 
     return {takeTurn};
 })();
+
+
+const boardDisplay = document.querySelectorAll('.square');
+
+boardDisplay.forEach(node => node.addEventListener('click', () => {game.takeTurn(node.dataset.index)}));

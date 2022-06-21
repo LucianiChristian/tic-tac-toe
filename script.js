@@ -26,6 +26,7 @@ const boardModel = (() => {
 
 const boardView = (() => {
     const boardDisplay = document.querySelectorAll('.square');
+    boardDisplay.forEach(node => node.addEventListener('click', () => {game.takeTurn(node.dataset.index)}));
 
     const renderBoard = () => {
         const model = boardModel.getBoard();
@@ -67,16 +68,22 @@ const game = (() => {
         }
     };
 
+    // Checks for a win or tie
+    const checkWin = () => {
+
+    }
+    const checkTie = () => {
+        if(!boardModel.getBoard().includes('')) {
+            console.log('tie');
+        }
+    }
+
     // Takes a turn
     const takeTurn = (index) => {
         boardController.markBoard(index, currentTurn.getMark());
+        checkTie();
         switchTurn();
     }
 
     return {takeTurn};
 })();
-
-
-const boardDisplay = document.querySelectorAll('.square');
-
-boardDisplay.forEach(node => node.addEventListener('click', () => {game.takeTurn(node.dataset.index)}));

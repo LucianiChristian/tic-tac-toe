@@ -6,7 +6,7 @@ const Player = (name, mark) => {
 }
 
 const boardModel = (() => {
-    const board = ['', '', '', '', '', '', '', '', ''];
+    let board = ['', '', '', '', '', '', '', '', ''];
 
     const isSquareEmpty = (index) => {
         if(boardModel.getBoard()[index] === '') {
@@ -14,14 +14,25 @@ const boardModel = (() => {
         }
 
         return false;
-    }
+    };
+
+    const isBoardFull = () => {
+        if(board.includes('')) {
+            return false;
+        }
+        
+        return true;
+    };
 
     const getBoard = () => [...board];
     const setSquare = (index, mark) => {
         board[index] = mark; 
-    }
+    };
+    const wipeBoard = () => {
+        board = ['', '', '', '', '', '', '', '', ''];
+    };
 
-    return {getBoard, setSquare, isSquareEmpty};
+    return {getBoard, setSquare, isSquareEmpty, isBoardFull, wipeBoard};
 })();
 
 const boardView = (() => {
@@ -58,7 +69,9 @@ const game = (() => {
     // Set the first turn to player1 by default
     let currentTurn = player1;
 
-    // Switches turn
+    // Freezes the board if a win or tie is reached
+    let gameOver = false;
+
     const switchTurn = () => {
         if(currentTurn === player1) {
             currentTurn = player2;
@@ -68,22 +81,55 @@ const game = (() => {
         }
     };
 
-    // Checks for a win or tie
-    const checkWin = () => {
-
-    }
     const checkTie = () => {
-        if(!boardModel.getBoard().includes('')) {
-            console.log('tie');
+        if(boardModel.isBoardFull() && !checkWin()) {
+            return true;
         }
     }
 
-    // Takes a turn
+    const checkWin = () => {
+        // list out each combination with checkEquivalence
+        if(checkEquivalence(0, 1, 2) || checkEquivalence(3, 4, 5) || checkEquivalence (6, 7, 8)
+        || checkEquivalence(0, 3, 6) || checkEquivalence(1, 4, 7) || checkEquivalence (2, 5, 8)
+        || checkEquivalence(0, 4, 8) || checkEquivalence(2, 4, 6)) 
+        { return true; }
+    }
+
+    const checkEquivalence = (index1, index2, index3) => {
+        const board = boardModel.getBoard();
+
+        // prevents equivalence of empty spaces
+        if(board[index1] === '') {
+            return false;
+        }
+
+        if(board[index1] === board[index2] && board[index2] === board[index3]) {
+            console.log(index1, index2, index3);
+            return true;
+        }
+
+        return false;
+    }
+
     const takeTurn = (index) => {
+        // prevents a turn if game is over
+        if(gameOver) {
+            return;
+        }
+
         boardController.markBoard(index, currentTurn.getMark());
-        checkTie();
+        if(checkWin() || checkTie()) {
+            gameOver = true;
+        }
+
         switchTurn();
     }
 
-    return {takeTurn};
+    const restart = () => {
+        boardModel.wipeBoard();
+        boardView.renderBoard();
+    }
+
+    return {takeTurn, restart};
 })();
+

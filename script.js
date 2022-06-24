@@ -1,9 +1,4 @@
-const Player = (name, mark) => {
-    const getName = () => name;
-    const getMark  = () => mark;
 
-    return {getName, getMark};
-}
 
 const boardModel = (() => {
     let board = ['', '', '', '', '', '', '', '', ''];
@@ -62,6 +57,12 @@ const boardController = (() => {
 })();
 
 const game = (() => {
+    const Player = (name, mark) => {
+        const getName = () => name;
+        const getMark  = () => mark;
+    
+        return {getName, getMark};
+    }
     // Create both player objects
     const player1 = Player('player1', 'X');
     const player2 = Player('player2', 'O');

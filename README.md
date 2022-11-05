@@ -1,5 +1,5 @@
 # Tic-Tac-Toe
-<p>A tic-tac-toe game.</p>
+<p>A tic-tac-toe game in Vanilla JS. Play against a friend or an AI.</p>
 <p>From the Odin Project fundamentals <a href="https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe">curriculum</a></p>
 <p>Created By : <a href="https://github.com/LucianiChristian">Christian Luciani</a></p> 
 <a href="https://lucianichristian.github.io/tic-tac-toe/">Live Preview</a>
